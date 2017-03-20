@@ -9815,5 +9815,5 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-i.ion-calendar {
-  font-size: 30px; }
+.calendar-navbar {
+  margin-left: 0; }
