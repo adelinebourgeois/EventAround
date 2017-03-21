@@ -2,8 +2,16 @@
     <ion-content>
         <!--<div id="map" style="width: 100%; height: 100%" data-tap-disabled="true"></div>-->
         <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-            <ui-gmap-markers models="eventMarker" coords="'self'" icon="'icon'">
-            </ui-gmap-markers>
+            <ui-gmap-markers models="eventMarker" coords="'self'" events="map.markersEvents"></ui-gmap-markers>
+            <ui-gmap-window
+                    show="map.window.show"
+                    coords="map.window.model"
+                    templateUrl="'templates/infoWindow.html'"
+                    templateParameter="map.window.model"
+                    options="map.window.options"
+                    ng-cloak>
+            </ui-gmap-window>
         </ui-gmap-google-map>
+        <span>window:{{map.window}}</span>
     </ion-content>
 </ion-view>

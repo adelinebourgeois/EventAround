@@ -1,5 +1,12 @@
 /* Empty. Add your own CSS if you like */
 
+.info-window > p {
+    text-align: center;
+    margin-top: 15px;
+}
+img {
+    width: 100%;
+}
 .angular-google-map-container {
-    height: 400px;
+    height: 623px;
 }
