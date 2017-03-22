@@ -6,66 +6,64 @@ angular.module('starter.controllers', [])
                 latitude: 48.864716,
                 longitude: 2.349014
             },
-            zoom: 11
+            zoom: 11,
+            window: {
+                model: {},
+                show: false,
+                options:{
+                    pixelOffset: {width:-1,height:-20}
+                }
+            },
+            markersEvents: {
+                click: function(marker, eventName, model, args) {
+                    $scope.map.window.model = model;
+                    $scope.map.window.show = true;
+
+                }
+            }
         };
-        //Map info
-        // var paris = new google.maps.LatLng(48.864716, 2.349014);
-        //
-        // var map = new google.maps.Map(document.getElementById('map'), {
-        //     center: paris,
-        //     scrollwheel: true,
-        //     zoom: 11
-        // });
 
         // Markers Events
-        var getEvents = function (idKey) {
+        var getEventsMarkers = function (idKey) {
             IledefranceService.getEvents().then(function (response) {
                 var finalReturn = [];
 
                 for (var i = 0; i < response.data.records.length; i++) {
                     var events = response.data.records[i];
                     var eventsLocation = events.geometry.coordinates;
-                    // var infoWindowContent = events.fields.placename;
 
-                    var latitude = eventsLocation[0];
-                    var longitude = eventsLocation[1];
+                    var latitude = eventsLocation[1];
+                    var longitude = eventsLocation[0];
 
-                    var ret = {
+                    var eventName = events.fields.title;
+                    var eventPhoto = events.fields.image;
+                    var eventDescription = events.fields.description;
+
+                    var info = {
                         latitude: latitude,
                         longitude: longitude,
-                        title: 'm' + i
+                        title: 'm' + i,
+                        name: eventName,
+                        photo: eventPhoto,
+                        body: eventDescription
                     };
                     if (idKey == null) {
                         idKey = "id";
                     }
 
-                    ret[idKey] = i;
-                    finalReturn.push(ret);
+                    info[idKey] = i;
+                    finalReturn.push(info);
 
-                    // var latLng = {lat: eventsLocation[0], lng: eventsLocation[1]};
-
-                    // var markers = new google.maps.Marker({
-                    //     position: latLng,
-                    //     setMap: $scope.map
-                    // });
-
-
-                    // google.maps.event.addListener(markers, 'click', (function (markers) {
-                    //     return function () {
-                    //         infoWindow.setContent(infoWindowContent);
-                    //         infoWindow.open($scope.map, markers);
-                    //     }
-                    // }));
                 }
                 $scope.eventMarker = finalReturn;
-                console.log(finalReturn);
+                console.log($scope.eventMarker);
 
             }, function (error) {
                 console.log(error.message);
             })
         };
 
-        getEvents();
+        getEventsMarkers();
 
         //Geolocation
         // navigator.geolocation.getCurrentPosition(function(position){
