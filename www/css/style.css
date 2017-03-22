@@ -1,5 +1,8 @@
 /* Empty. Add your own CSS if you like */
 
+.info-window {
+    text-transform: uppercase;
+}
 .info-window > p {
     text-align: center;
     margin-top: 15px;

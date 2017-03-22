@@ -36,11 +36,16 @@ angular.module('starter', ['ionic','ngCordova','uiGmapgoogle-maps', 'ui.rCalenda
           templateUrl: 'templates/map.html',
           controller: 'MapCtrl'
       })
-    .state('calendar', {
-        url: '/calendar',
-        templateUrl: 'templates/calendar.html',
-        controller: 'CalendarCtrl'
-    });
+      .state('calendar', {
+          url: '/calendar',
+          templateUrl: 'templates/calendar.html',
+          controller: 'CalendarCtrl'
+      })
+      .state('info', {
+          url: '/:infoId/info',
+          templateUrl: 'templates/info.html',
+          controller: 'MapCtrl'
+      });
 
 
   // if none of the above states are matched, use this as the fallback

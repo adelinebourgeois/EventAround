@@ -32,7 +32,6 @@ angular.module('starter.controllers', [])
                     var events = response.data.records[i];
                     var eventsLocation = events.geometry.coordinates;
 
-
                     var latitude = eventsLocation[1];
                     var longitude = eventsLocation[0];
 
