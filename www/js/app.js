@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ngCordova','uiGmapgoogle-maps', 'mwl.calendar', 'ui.bootstrap', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic','ngCordova','uiGmapgoogle-maps', 'mwl.calendar', 'ui.bootstrap', 'starter.controllers','starter.control','InfoCtrl', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -42,9 +42,14 @@ angular.module('starter', ['ionic','ngCordova','uiGmapgoogle-maps', 'mwl.calenda
           controller: 'CalendarCtrl'
       })
       .state('info', {
-          url: '/:infoId/info',
+          url: '/info/:id',
           templateUrl: 'templates/info.html',
-          controller: 'MapCtrl'
+          controller: 'InfoCtrl',
+          onEnter: ['$state', "$rootScope", function ($state, $rootScope) {
+              if ($rootScope.eventMarker === null || typeof $rootScope.eventMarker === "undefined") {
+                  $state.go('map');
+              }
+          }]
       });
 
 

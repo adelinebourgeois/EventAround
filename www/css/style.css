@@ -13,3 +13,27 @@ img {
 .angular-google-map-container {
     height: 623px;
 }
+.info {
+    margin: 30px;
+    text-align: center;
+}
+input {
+    left: 0 !important;
+    padding: 5px !important;
+    top: 55px !important;
+    width: 100%;
+}
+.ion-search {
+    position: absolute;
+    top: 55px !important;
+    left:0;
+}
+.info-pratique {
+    text-align: left;
+}
+.info-pratique span {
+    font-weight: bold;
+}
+.body {
+    margin-top:10px;
+}

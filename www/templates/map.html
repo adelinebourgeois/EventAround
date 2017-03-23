@@ -2,6 +2,11 @@
     <ion-content>
         <!--<div id="map" style="width: 100%; height: 100%" data-tap-disabled="true"></div>-->
         <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+            <ui-gmap-search-box options="map.searchbox.options"
+                                template="map.searchbox.template"
+                                events="map.searchbox.events"
+                                options='map.searchbox.options'>
+            </ui-gmap-search-box>
             <ui-gmap-markers models="eventMarker" coords="'self'" events="map.markersEvents"></ui-gmap-markers>
             <ui-gmap-window
                     show="map.window.show"

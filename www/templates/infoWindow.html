@@ -2,5 +2,5 @@
     <h4>{{parameter.name}}</h4>
     <img ng-if="parameter.photo" ng-src="{{parameter.photo}}" alt="Photo de l'evenement" />
     <p>{{parameter.body}}</p>
-    <a ui-sref="info">Voir plus</a>
+    <a ui-sref="info({id: parameter.id})">Voir plus</a>
 </div>
