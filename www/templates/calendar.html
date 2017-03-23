@@ -1,9 +1,6 @@
 <ion-view>
     <ion-content>
-    <div class="row">
     	<div class="container">
-	    	<div class="d-flex">
-
 				<ul class="pager">
 					<li class="previous">
 						<a href="#" onclick="return false;" mwl-date-modifier date="viewDate" decrement="calendarView">
@@ -19,39 +16,56 @@
 				    		Newer<span aria-hidden="true">&rarr;</span>
 				    	</a>
 				    </li>
-				  </ul>
-
-				
-	    	</div>
+				</ul>
+    	<div class="row">
+    			<div class="btn-group" style="margin:auto auto">
+					    <button type="submit" class="btn btn-primary" ng-class="calendarView == 'month' ? 'active' : ''" ng-click="switchView('month')">Month View</button>
+					    <button type="submit" class="btn btn-primary" ng-class="calendarView == 'week' ? 'active' : ''" ng-click="switchView('week')">Week View</button>
+			    	    <button type="submit" class="btn btn-primary" ng-class="calendarView == 'day' ? 'active' : ''" ng-click="switchView('day')">Day View </button>
+			    </div>
+		 </div>
     	</div>
-    </div>
-    	
-        <mwl-calendar
+
+    	<mwl-calendar
 		    view="calendarView"
 		    view-date="viewDate"
 		    events="events"
 		    view-title="calendarTitle"
-		    on-event-click="eventClicked(calendarEvent)"
+		    on-event-click="openModal(calendarEvent)"
 		    on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
 		    cell-is-open="true">
 		</mwl-calendar>
+        
+        <!-- Modal Popup -->
+		<script id="modalContent.html" type="text/ng-template">
+		  <ion-modal-view  style="background:rgba(255,255,255,0.0);">
+		    <ion-content>
+		    	<div class="col-xs-12">
+			    	<div class="thumbnail" style="margin-top:50px;padding:8px;">
+			    		  <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="closeModal()">
+			    		  	<span aria-hidden="true">&times;</span>
+			    		  </button>
+
+			      		<img ng-src="{{currentEvent.image}}" 
+			      		class=""
+			      		alt='Description image' 
+			      		style="max-height: 200px; margin-top:25px">
+
+			      		<div class="page-header">
+			    			<h1>{{currentEvent.title ? currentEvent.title : currentEvent.placename}} </h1>
+			    			<h1><small>{{currentEvent.timetable | customDate}}</small></h1>
+			    		</div>
+			        	<p>{{currentEvent.description}}</p>
+				        <span ng-if="currentEvent.city"><span class="label label-primary">Lieu</span>  {{currentEvent.address}} {{currentEvent.city}}</span> <br>
+			        	<span ng-if="currentEvent.space_time_info"><span class="label label-info">+ Info</span> {{currentEvent.space_time_info}}</span> <br>
+			        	<span ng-if="currentEvent.tags"><span class="label label-success">Tags</span> {{currentEvent.tags | splitTags:','}}</span> <br>
+		    		</div>
+		   		</div>
+		    </ion-content>
+		  </ion-modal-view>
+		</script>
+
     </ion-content>
 </ion-view>
 
-	<!-- Modal Popup -->
-	<script type="text/ng-template" id="modalContent.html">
-      <div class="modal-header">
-        <h3 class="modal-title">{{vm.event.eventName}}</h3>
-      </div>
-      <div class="modal-body">
-        <p>Action:
-        <pre>{{ vm.action }}</pre>
-        </p>
-        <p>Event:
-        <pre>{{ vm.event | json }}</pre>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="$close()">OK</button>
-      </div>
-    </script>
+	
