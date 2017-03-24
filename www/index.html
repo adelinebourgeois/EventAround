@@ -10,7 +10,31 @@
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
-  <link rel="stylesheet" href="lib/ng-responsive-calendar/dist/css/calendar.min.css"/>
+
+</head>
+<body ng-app="starter">
+<ion-pane>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title" style="text-align: center;">EventAround</h1>
+    <a ui-sref="calendar" class="button icon-right button-clear button-dark"><i class="ion-calendar" style="font-size:30px;"></i></a>
+    <a ui-sref="map" class="button icon-right button-clear button-dark"><i class="ion-map" style="font-size:30px;"></i></a>
+  </ion-header-bar>
+  <!--
+    The nav bar that will be updated as we navigate between views.
+  -->
+  <!--<ion-nav-bar class="bar-stable">-->
+  <!--<ion-nav-back-button>-->
+  <!--</ion-nav-back-button>-->
+  <!--</ion-nav-bar>-->
+  <!--
+    The views will be rendered in the <ion-nav-view> directive below
+    Templates are in the /templates folder (but you could also
+    have templates inline in this html file if you'd like).
+  -->
+  <ion-nav-view>
+
+  </ion-nav-view>
+</ion-pane>
 
   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
   <link href="css/ionic.app.css" rel="stylesheet">
@@ -23,7 +47,6 @@
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-  <script src="lib/ng-responsive-calendar/dist/js/calendar-tpls.min.js"></script>
   <script src="http://code.angularjs.org/1.4.3/i18n/angular-locale_fr-fr.js"></script>
 
   <!-- Map -->
@@ -56,30 +79,6 @@
   <script src="js/controllers/calendarController.js"></script>
   <script src="js/controllers/infoController.js"></script>
   <script src="js/services.js"></script>
-</head>
-<body ng-app="starter">
-<ion-pane>
-  <ion-header-bar class="bar-stable">
-    <h1 class="title" style="text-align: center;">EventAround</h1>
-    <a ui-sref="calendar" class="button icon-right button-clear button-dark"><i class="ion-calendar" style="font-size:30px;"></i></a>
-    <a ui-sref="map" class="button icon-right button-clear button-dark"><i class="ion-map" style="font-size:30px;"></i></a>
-  </ion-header-bar>
-  <!--
-    The nav bar that will be updated as we navigate between views.
-  -->
-  <!--<ion-nav-bar class="bar-stable">-->
-  <!--<ion-nav-back-button>-->
-  <!--</ion-nav-back-button>-->
-  <!--</ion-nav-bar>-->
-  <!--
-    The views will be rendered in the <ion-nav-view> directive below
-    Templates are in the /templates folder (but you could also
-    have templates inline in this html file if you'd like).
-  -->
-  <ion-nav-view>
-
-  </ion-nav-view>
-</ion-pane>
 
 </body>
 </html>
