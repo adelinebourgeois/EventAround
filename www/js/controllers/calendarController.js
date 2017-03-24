@@ -156,7 +156,7 @@
 
             return string;
         }
-    }).filter('customDate', function() {
+    }).filter('customDate', function() { // Date formatter
         return function(input) {
             if(!input)
                 return;
