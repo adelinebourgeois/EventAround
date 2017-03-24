@@ -1,15 +1,22 @@
 <ion-view>
     <ion-content>
         <div class="info">
-            <h2>{{event.name}}</h2>
-            <img ng-if="event.photo" ng-src="{{event.photo}}" alt="Photo de l'évenement" />
+            <img ng-src="{{event.photo}}"
+                 class=""
+                 alt='Description image'
+                 style="max-height: 200px; margin-top:25px">
+            <div class="page-header">
+                <h1>{{event.name}} </h1>
+                <h1><small>{{event.timetable | customDate}}</small></h1>
+            </div>
             <p class="body" ng-if="event.body">{{event.body}}</p>
             <p ng-if="event.detail">{{event.detail}}</p>
             <div class="info-pratique">
                 <h3>Infos pratiques:</h3>
-                <p ng-if="event.address"><span>Adresse :</span> {{event.address}}, {{event.city}}</p>
-                <p ng-if="event.time"><span>Où et Quand :</span> {{event.time}}</p>
-                <p ng-if="event.price"><span>Entrée :</span> {{event.price}}</p>
+                <span ng-if="event.address"><span class="label label-primary">Lieu</span>  {{event.address}} {{event.city}}</span> <br>
+                <span ng-if="event.time"><span class="label label-info">+ Info</span> {{event.time}}</span> <br>
+                <span ng-if="event.price"><span class="label label-default">Entrée</span> {{event.price}}</span> <br>
+                <span ng-if="event.tag"><span class="label label-success">Tags</span> {{event.tag | splitTags:','}}</span> <br>
             </div>
         </div>
     </ion-content>

@@ -2,52 +2,68 @@ angular.module('starter.control', [])
 
 
     .controller('MapCtrl', ['$scope','$rootScope','IledefranceService', function($scope, $rootScope, IledefranceService){
+        $rootScope.eventMarker = [];
         // Markers Events
-        var getEventsMarkers = function () {
-            IledefranceService.getEvents().then(function (response) {
-                var finalReturn = [];
+            var getEventsMarkers = function () {
+                IledefranceService.getEvents().then(function (response) {
+                    var finalReturn = [];
 
-                for (var i = 0; i < response.data.records.length; i++) {
-                    var events = response.data.records[i];
+                    for (var i = 0; i < response.data.records.length; i++) {
+                        var events = response.data.records[i];
 
-                    var eventsLocation = events.geometry.coordinates;
+                        var eventsLocation = events.geometry.coordinates;
 
-                    var latitude = eventsLocation[1];
-                    var longitude = eventsLocation[0];
+                        var latitude = eventsLocation[1];
+                        var longitude = eventsLocation[0];
 
-                    var eventName = events.fields.title;
-                    var eventPhoto = events.fields.image;
-                    var eventDescription = events.fields.description;
-                    var eventDetail = events.fields.free_text;
-                    var eventAddress = events.fields.address;
-                    var eventCity = events.fields.city;
-                    var eventSpaceTimeInfo = events.fields.space_time_info;
-                    var eventPrice = events.fields.pricing_info;
+                        var eventTime = events.fields.timetable;
+                        var eventStart= eventTime.split(' ')[0];
+                        var eventStartDate = new Date(eventStart);
+                        var eventEnd = eventTime.split(' ')[1];
+                        var eventEndDate = new Date(eventEnd);
 
-                    var info = {
-                        id: i,
-                        latitude: latitude,
-                        longitude: longitude,
-                        title: 'm' + i,
-                        name: eventName,
-                        photo: eventPhoto,
-                        body: eventDescription,
-                        detail: eventDetail,
-                        address: eventAddress,
-                        city: eventCity,
-                        time: eventSpaceTimeInfo,
-                        price: eventPrice
-                    };
 
-                    finalReturn.push(info);
+                        var eventName = events.fields.title;
+                        var eventPhoto = events.fields.image;
+                        var eventDescription = events.fields.description;
+                        var eventDetail = events.fields.free_text;
+                        var eventAddress = events.fields.address;
+                        var eventCity = events.fields.city;
+                        var eventSpaceTimeInfo = events.fields.space_time_info;
+                        var eventPrice = events.fields.pricing_info;
+                        var eventTag = events.fields.tags;
 
-                }
-                $rootScope.eventMarker = finalReturn;
+                        var info = {
+                            id: i,
+                            latitude: latitude,
+                            longitude: longitude,
+                            title: 'm' + i,
+                            name: eventName,
+                            photo: eventPhoto,
+                            body: eventDescription,
+                            detail: eventDetail,
+                            address: eventAddress,
+                            city: eventCity,
+                            time: eventSpaceTimeInfo,
+                            price: eventPrice,
+                            tag: eventTag,
+                            timetable: eventTime
+                        };
 
-            }, function (error) {
-                console.error;
-            })
-        };
+
+                        if(eventEndDate > eventStartDate){
+                            finalReturn.push(info);
+                        }
+                    }
+                    for(var i = 0; i < finalReturn.length; i++) {
+                        finalReturn[i].id = i;
+                        $rootScope.eventMarker = finalReturn;
+                    }
+
+                }, function (error) {
+                    console.error;
+                })
+            };
 
         $scope.map = {
             center: {
