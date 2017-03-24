@@ -8,5 +8,4 @@ angular.module('starter.services', [])
         };
 
         return IledefranceService;
-
     }]);

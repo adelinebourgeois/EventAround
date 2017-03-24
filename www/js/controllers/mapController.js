@@ -45,7 +45,7 @@ angular.module('starter.control', [])
                 $rootScope.eventMarker = finalReturn;
 
             }, function (error) {
-                console.log(error.message);
+                console.error;
             })
         };
 
@@ -73,12 +73,11 @@ angular.module('starter.control', [])
                 events:{
                     places_changed: function (searchBox) {
                         var place = searchBox.getPlaces();
-                        console.log(place);
+
                         $scope.map.center.latitude = place[0].geometry.location.lat();
                         $scope.map.center.longitude = place[0].geometry.location.lng();
                         $scope.map.zoom = 15;
                         if (!place || place == 'undefined' || place.length == 0) {
-                            console.log('no place data :(');
                             return;
                         }
                     }
@@ -91,8 +90,9 @@ angular.module('starter.control', [])
         };
         getEventsMarkers();
 
+        //Geolocation
         // if(navigator.geolocation) {
-        //     //Geolocation
+        //
         //     navigator.geolocation.getCurrentPosition(function(position){
         //
         //         $scope.map = {
@@ -106,7 +106,7 @@ angular.module('starter.control', [])
         //         getEventsMarkers();
         //
         //     }, function(error){
-        //         console.log(error);
+        //         console.error;
         //     });
         // } else {
         //     $scope.map = {
@@ -131,7 +131,4 @@ angular.module('starter.control', [])
         //         }
         //     };
         // }
-
-
-
     }]);

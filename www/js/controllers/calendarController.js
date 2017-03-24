@@ -35,7 +35,6 @@
                     IDFData = response.data;
                     for (var i = 0; i < response.data.records.length; i++) {
                         var events = response.data.records[i];
-                        console.log(events);
                         var eventsName =  events.fields.title;
                         var eventTime = events.fields.timetable;
                         var eventStartDate = eventTime.split(' ')[0];
@@ -52,10 +51,7 @@
                                 },
                                 actions: [{ // an array of actions that will be displayed next to the event title
                                   label: '<i class=\'glyphicon glyphicon-pencil\'></i>', // the label of the action
-                                  cssClass: 'edit-action', // a CSS class that will be added to the action element so you can implement custom styling
-                                  onClick: function(args) { // the action that occurs when it is clicked. The first argument will be an object containing the parent event
-                                    console.log('Edit event', args.calendarEvent);
-                                  }
+                                  cssClass: 'edit-action' // a CSS class that will be added to the action element so you can implement custom styling
                                 }],
                                 draggable: false, //Allow an event to be dragged and dropped
                                 resizable: false, //Allow an event to be resizable
@@ -68,7 +64,7 @@
                     }
 
                 }, function (error) {
-                    console.log(error.message);
+                    console.error;
                 });
             }
             
