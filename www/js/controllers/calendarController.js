@@ -14,7 +14,7 @@
         $scope.switchView = function (viewType){
           //here I switch the calendar-view
           $scope.calendarView = viewType;
-        }
+        };
 
         //Calendrier Events
         function getEvents() {
@@ -35,17 +35,17 @@
                         var color1 = { // can also be calendarConfig.colorTypes.warning for shortcuts to the deprecated event types
                                   primary: '#44DE4C', // the primary event color (should be darker than secondary)
                                   secondary: '#7EEF88' // the secondary event color (should be lighter than primary)
-                                }
+                                };
                         var color2 = {
                                   primary: '#e3bc08',
                                   secondary: '#fdf1ba'
-                                }
+                                };
 
                         var eventColor = eventsName == undefined ? color2:color1;
                         eventsName = eventsName||event.fields.placename;
 
                         if(eventEndDate > eventStartDate){
-                            IDFData.push(event)
+                            IDFData.push(event);
                             $scope.events.push(
                                 {
                                     title: eventsName,
@@ -54,10 +54,7 @@
                                     color: eventColor,
                                     actions: [{ // an array of actions that will be displayed next to the event title
                                       label: '', // the label of the action
-                                      cssClass: 'edit-action', // a CSS class that will be added to the action element so you can implement custom styling
-                                      onClick: function(args) { // the action that occurs when it is clicked. The first argument will be an object containing the parent event
-                                        console.log('Edit event', args.calendarEvent);
-                                      }
+                                      cssClass: 'edit-action' // a CSS class that will be added to the action element so you can implement custom styling
                                     }],
                                     draggable: false, //Allow an event to be dragged and dropped
                                     resizable: false, //Allow an event to be resizable
@@ -68,13 +65,13 @@
                                 }
                             );
                         }
+
                     }
 
                 }, function (error) {
-                    console.log(error.message);
+                    console.error;
                 });
             }
-            
         }
 
         $ionicModal.fromTemplateUrl('modalContent.html', {
@@ -84,11 +81,10 @@
             $scope.modal = modal;
           });
           $scope.openModal = function(event) {
-          console.log(event);
+
           for (var i = 0; i < IDFData.length; i++) {
               if(i == event.calendarEventId){
                 $scope.currentEvent = IDFData[i].fields;
-                console.log($scope.currentEvent);
                 $scope.event = event;
               }
           }
